@@ -1,0 +1,13 @@
+<resources>
+    <style name="Base.Theme.FocusFlow" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">#7FCFC9</item>
+        <item name="colorOnPrimary">#003736</item>
+        <item name="colorPrimaryContainer">#135352</item>
+        <item name="colorSecondary">#E8B48A</item>
+        <item name="android:colorBackground">#121412</item>
+        <item name="colorSurface">#1C1E1B</item>
+        <item name="colorOnSurface">#E4E3DC</item>
+        <item name="colorOnSurfaceVariant">#C6C7BE</item>
+        <item name="colorOutline">#8F9189</item>
+    </style>
+</resources>

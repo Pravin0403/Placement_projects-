@@ -1,0 +1,15 @@
+<resources>
+    <style name="Base.Theme.FocusFlow" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/focus_primary</item>
+        <item name="colorOnPrimary">@color/focus_on_primary</item>
+        <item name="colorPrimaryContainer">@color/focus_primary_container</item>
+        <item name="colorSecondary">@color/focus_secondary</item>
+        <item name="android:colorBackground">@color/focus_background</item>
+        <item name="colorSurface">@color/focus_surface</item>
+        <item name="colorOnSurface">@color/focus_on_surface</item>
+        <item name="colorOnSurfaceVariant">@color/focus_on_surface_variant</item>
+        <item name="colorOutline">@color/focus_outline</item>
+    </style>
+
+    <style name="Theme.FocusFlow" parent="Base.Theme.FocusFlow" />
+</resources>

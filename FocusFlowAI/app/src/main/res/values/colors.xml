@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="focus_primary">#1B6B6B</color>
+    <color name="focus_on_primary">#FFFFFFFF</color>
+    <color name="focus_primary_container">#D4EFEF</color>
+    <color name="focus_secondary">#C47B3B</color>
+    <color name="focus_background">#F6F3EC</color>
+    <color name="focus_surface">#FFFBFF</color>
+    <color name="focus_on_surface">#1B1C18</color>
+    <color name="focus_on_surface_variant">#5C6058</color>
+    <color name="focus_outline">#C6C7BE</color>
+    <color name="focus_score_track">#E4EEEA</color>
+    <color name="focus_risk_high">#B3261E</color>
+    <color name="focus_risk_medium">#C47B3B</color>
+    <color name="focus_risk_low">#1B6B6B</color>
+</resources>

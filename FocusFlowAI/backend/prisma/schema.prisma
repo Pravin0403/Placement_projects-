@@ -1,0 +1,117 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String            @id @default(cuid())
+  email         String            @unique
+  passwordHash  String
+  createdAt     DateTime          @default(now())
+  refreshTokens RefreshToken[]
+  sessions      FocusSession[]
+  telemetry     TelemetryEvent[]
+  windows       TelemetryWindow[]
+  predictions   Prediction[]
+  feedback      Feedback[]
+}
+
+model RefreshToken {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tokenHash String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}
+
+model FocusSession {
+  id         String    @id @default(cuid())
+  userId     String
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  externalId String
+  startedAt  DateTime
+  endedAt    DateTime?
+  createdAt  DateTime  @default(now())
+
+  @@unique([userId, externalId])
+}
+
+model TelemetryEvent {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  eventId     String
+  sessionId   String
+  type        String
+  packageName String?
+  timestamp   BigInt
+  createdAt   DateTime @default(now())
+
+  @@unique([userId, eventId])
+}
+
+model TelemetryWindow {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sessionId String
+  timestamp BigInt
+  features  Json
+  createdAt DateTime @default(now())
+
+  @@index([userId, sessionId])
+}
+
+model Prediction {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  predictionId String
+  sessionId    String
+  riskScore    Float
+  modelVersion String
+  createdAtMs  BigInt
+  createdAt    DateTime @default(now())
+
+  @@unique([userId, predictionId])
+}
+
+model Feedback {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  predictionId String
+  helpful      Boolean
+  actionTaken  String?
+  createdAtMs  BigInt
+  createdAt    DateTime @default(now())
+
+  @@unique([userId, predictionId])
+}
+
+model IdempotencyKey {
+  id          String   @id @default(cuid())
+  userId      String
+  key         String
+  requestHash String
+  statusCode  Int
+  createdAt   DateTime @default(now())
+
+  @@unique([userId, key])
+}
+
+model ModelArtifact {
+  id          String   @id @default(cuid())
+  version     String   @unique
+  artifactUrl String
+  f1Score     Float
+  active      Boolean  @default(false)
+  createdAt   DateTime @default(now())
+}
